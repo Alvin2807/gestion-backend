@@ -44,9 +44,17 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function mostrarCategorias()
     {
-        //
+        //Funcion de mostrar todas las categorías
+        $categorias = Categoria::select('inv_categorias.id_categoria','inv_categorias.descripcion',
+        'inv_categorias.descripcion','inv_categorias.usuario_crea','inv_categorias.fecha_crea','inv_categorias.usuario_modifica',
+        'inv_categorias.estado')
+        ->get();
+        return response()->json([
+            "ok"    =>true,
+            "data"  =>$categorias
+        ]);
     }
 
     /**
